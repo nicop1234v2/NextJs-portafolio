@@ -6,76 +6,12 @@ body {
   background-color: #f6f6f6;
 }
 
-/*----------------------------NavBar------------------------------------------*/
+.gradient-text {
+ 
 
-.stic {
-  position: fixed;
-  width: 100%;
-  top: 0;
+  background: linear-gradient(89.299deg, #B15E6D 0%, #FFB2AA 47%, #B15E6D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; 
 }
-
-.link {
-  padding: 4px;
-  transition: padding 0.2s ease-in-out;
-}
-.link:hover {
-  padding: 6px;
-}
-.linkera-content {
-  display: flex;
-}
-
-.sanguchito {
-  background: linear-gradient(
-    88.976deg,
-    #f58e8b 10%,
-    #61363e 54%,
-    #502029 100%
-  );
-}
-.sanguchito2 {
-  background: linear-gradient(
-    88.976deg,
-    #f58e8b 10%,
-    #61363e 40%,
-    #502029 100%
-  );
-}
-
-
-
-
-.hamburger {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 11px;
-  }
-  
-  .hamburger .line {
-    width: 45px;
-    height: 6px;
-    border-radius: 1px;
-    background: linear-gradient(
-        88.976deg,
-        #f58e8b 10%,
-        #61363e 54%,
-        #502029 100%
-      );
-    transition: all 0.8s ease;
-  }
-  
-  .hamburger.open .line:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
-  
-  .hamburger.open .line:nth-child(2) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-  
-  .hamburger .line:nth-child(1),
-  .hamburger .line:nth-child(2) {
-    transition: transform 1s ease;
-  }
-  

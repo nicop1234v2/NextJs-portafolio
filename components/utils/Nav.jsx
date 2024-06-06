@@ -3,21 +3,25 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import "../../styles/styles.css";
+import "../../styles/navBar.css";
 
 const variants = {
-  open: { x: 0, opacity: 1, transition: { duration: 0.5 } },
+  open: { x: "0%", opacity: 1, transition: { duration: 0.5 } },
   closed: { x: "100%", opacity: 0, transition: { duration: 0.5 } },
 };
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const sidebarRef = useRef(null);
+  const buttonRef = useRef(null)
 
+  
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-        setOpen(true);
+        if (buttonRef.current && !buttonRef.current.contains(event.target)){
+          setOpen(false);
+        }
       }
     };
 
@@ -28,6 +32,12 @@ export default function Nav() {
     };
   }, []);
 
+  useEffect(() => {
+   console.log(open)
+  }, [open])
+  
+
+  
   const links = [
     { link: "/", name: "Inicio" },
     { link: "/#quienesSomos", name: "Nosotros" },
@@ -42,7 +52,7 @@ export default function Nav() {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
             href="/"
-            className="flex items-center  cursor-pointer w-auto h-auto align-baseline"
+            className="flex items-center  cursor-pointer  align-baseline "
           >
             <Image
               width={70}
@@ -54,10 +64,11 @@ export default function Nav() {
 
           <button
             type="button"
+            ref={buttonRef}
             className="flex items-center p-2 justify-center text-sm text-gray-500 rounded-lg focus:outline-none"
             aria-controls="sidebar"
             aria-expanded={open}
-            onClick={() => setOpen(!open)}
+            onClick={()=>setOpen(!open)}
           >
             <div className="flex flex-col">
               <div className="w-11 h-1.5 bg-black rounded-sm my-1.5 mb-0.5 sanguchito"></div>
@@ -68,7 +79,7 @@ export default function Nav() {
       </nav>
 
       <AnimatePresence>
-        {open ? (
+        {open && (
           <motion.aside
             ref={sidebarRef}
             initial="closed"
@@ -100,8 +111,6 @@ export default function Nav() {
               ))}
             </div>
           </motion.aside>
-        ) : (
-          <div></div>
         )}
       </AnimatePresence>
     </div>
