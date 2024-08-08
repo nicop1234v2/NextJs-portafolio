@@ -1,0 +1,24 @@
+
+
+useEffect(() => {
+    const pet = async () => {
+      const res = await fetch("http://portafolio-nest-env.eba-8pf6vye8.us-east-2.elasticbeanstalk.com/api/auth/check-auth-status", {
+        cache: "no-store",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+      });
+
+      const data = await res.json();
+      localStorage.removeItem('authToken');
+      localStorage.setItem('authToken', data.token);
+      return data.token;
+    }
+
+    if (token != null || token != undefined) {
+      const res = pet()
+      console.log(res)
+    }
+
+}, [])

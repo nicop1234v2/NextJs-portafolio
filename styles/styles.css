@@ -2,16 +2,25 @@ html {
   scroll-behavior: smooth;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #f6f6f6;
 }
 
 .gradient-text {
- 
 
   background: linear-gradient(89.299deg, #B15E6D 0%, #FFB2AA 47%, #B15E6D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent; 
+}
+
+
+.card-admin{
+  word-wrap: break-word;
+
 }
