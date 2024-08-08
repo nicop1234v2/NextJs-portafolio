@@ -1,14 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import React,{ useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import Loader from '@/components/utils/Loader';
 import Swal from "sweetalert2";
-import { postInterface } from '@/components/interfaces/posts-interfaces';
+import { postInterface } from '@/interfaces/posts-interfaces';
 import '../../styles/home.css'
 import { SvgDelete } from '../../components/utils/decos/SvgEliminar';
 
-export default function page() {
+export default function Page() {
+  
   const [loader, setLoader] = useState<Boolean>(false)
   const [posts, setPosts] = useState<postInterface[]>([])
   const router = useRouter();

@@ -2,8 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import "../../styles/home.css"
-import Redes from "./Redes.tsx"
-
+import Redes from './Redes'
 export default function Foot() {
   return (
     <footer className='bgColor-2 '>

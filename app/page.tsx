@@ -249,7 +249,7 @@ const Home: React.FC = () => {
                       Ultimo proyecto
                     </h2>
                     <p className="max-w-xl mt-4  tracking-tight inconsolata parrafo color-1">
-                      El ultimo proyecto se trata de una landing page para una orgaizacion social llamada 'Aile', es por ahora mi unica experiencia laboral.
+                      El ultimo proyecto se trata de una landing page para una orgaizacion social llamada &apos;Aile&apos;, es por ahora mi unica experiencia laboral.
                     </p>
                     <p className="max-w-xl mt-4  tracking-tight inconsolata parrafo color-1">
                       Esta desarrollada en NextJs, utilice TailwindCSS para los estilos y recibe actualizaciones constantemente. Un proyecto es poder escalar esta web para que permita un sistema de logeo donde cada miembro de esta organizacion tenga roles y tenga acceso limitado y especializado a la informacion segun el rol que posea.
