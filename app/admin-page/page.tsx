@@ -1,6 +1,6 @@
 'use client'
 
-import React,{ useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Loader from '@/components/utils/Loader';
 import Swal from "sweetalert2";
@@ -9,10 +9,13 @@ import '../../styles/home.css'
 import { SvgDelete } from '../../components/utils/decos/SvgEliminar';
 
 export default function Page() {
-  
+
   const [loader, setLoader] = useState<Boolean>(false)
   const [posts, setPosts] = useState<postInterface[]>([])
+  const [usetoken, setUsetoken] = useState<string>()
   const router = useRouter();
+
+
 
   const getData = async (): Promise<postInterface[]> => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKENDURI}/api/posts`, {
@@ -22,30 +25,32 @@ export default function Page() {
     return data;
   }
 
+  const fetchData = async () => {
+    setLoader(true);
+    const data = await getData();
+    setPosts(data);
+    setLoader(false);
 
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoader(true);
-      const token = localStorage.getItem('authToken');
-      if (!token) {
-        Swal.fire({
-          icon: "warning",
-          title: "¡Oops!",
-          text: "Por favor inicia sesión",
-          confirmButtonText: "Ok",
-        }).then(() => {
-          router.push('/login');
-        });
-      } else {
-        const data = await getData();
-        setPosts(data);
-        setLoader(false);
-      }
-    };
-    fetchData();
-
+    const item = window.localStorage.getItem('authToken')
+    if (item) {
+      setUsetoken(item)
+      fetchData();
+    } else {
+      console.log('esta aca')
+      Swal.fire({
+        icon: "warning",
+        title: "¡Oops!",
+        text: "Por favor inicia sesión",
+        confirmButtonText: "Ok",
+      }).then((res) => {
+        router.push('/login')
+      });
+    }
   }, []);
+
 
 
   const alertaBorrar = async (id: string) => {
@@ -64,14 +69,14 @@ export default function Page() {
   };
 
   const borrar = async (id: string) => {
-    const token = localStorage.getItem('authToken');
-    setLoader(true)
 
+    setLoader(true)
+    {/* 
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKENDURI}/api/posts/${id}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${usetoken}`,
         },
       });
       if (!res.ok) {
@@ -101,7 +106,7 @@ export default function Page() {
     } finally {
       setLoader(false);
     }
-
+*/}
   }
 
 
@@ -121,12 +126,12 @@ export default function Page() {
   };
 
 
-
-
   const sesion = () => {
     setLoader(true)
-    localStorage.removeItem('authToken');
+    {/**
+    window.localStorage.removeItem('authToken');
     router.push("/")
+     */}
   }
 
   return (

@@ -13,11 +13,18 @@ const variants = {
 export default function Nav() {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const [usetoken, setUsetoken] = useState<string>()
+
   const [open, setOpen] = useState(false);
 
-  const token = localStorage.getItem('authToken');
 
 useEffect(() => {
+  const item = localStorage.getItem('authToken');
+  if (item) {
+    setUsetoken(item)
+  }
+
+
   const handleOutsideClick = (event: MouseEvent) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
       if (buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
@@ -103,7 +110,7 @@ return (
                 {item.name}
               </Link>
             ))}
-            {(token) ? (
+            {(usetoken) ? (
               <Link
                 key={"admin"}
                 href={"/admin-page"}

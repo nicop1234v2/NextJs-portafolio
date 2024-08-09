@@ -10,10 +10,10 @@ export default function Page() {
   const router = useRouter()
   const form = useRef<HTMLFormElement>(null);
   const [loader, setLoader] = useState<Boolean>(false)
-  const token = typeof window !== 'undefined' ? localStorage.getItem('authToken') : null;
 
 
   const peticion = async () => {
+    const token = typeof window !== "undefined" ? window.localStorage.getItem('authToken'): false;
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKENDURI}/api/auth/check-auth-status`, {
         cache: "no-store",
@@ -55,6 +55,7 @@ export default function Page() {
   }
 
   useEffect(() => {
+    const token = typeof window !== "undefined" ? window.localStorage.getItem('authToken'): false;
     if (token) {
       peticion();
     }
